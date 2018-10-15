@@ -36,7 +36,7 @@ public class FXMLDocumentController implements Initializable {
         if (accepted)
         label.setText(newUser.getLogin() + " вошел");
         else
-        label.setText("Неверно");
+        label.setText("Неверо");
     }
     
     @Override
