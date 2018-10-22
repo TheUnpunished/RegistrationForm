@@ -14,9 +14,9 @@ public class user {
         this.pass = pass;
     }
 
-    boolean checkUserByDb(String log, String pass){
-
-    }
+//    boolean checkUserByDb(String log, String pass){
+//
+//    }
     
     boolean checkUser(String log, String pass)
     {
