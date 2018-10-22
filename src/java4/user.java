@@ -13,6 +13,10 @@ public class user {
         this.login = login;
         this.pass = pass;
     }
+
+    boolean checkUserByDb(String log, String pass){
+
+    }
     
     boolean checkUser(String log, String pass)
     {
