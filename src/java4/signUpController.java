@@ -28,13 +28,24 @@ public class signUpController implements Initializable {
     @FXML
     private Hyperlink signInLink;
     @FXML
-    private void handleButtonAction(ActionEvent event) {
+    private void handleButtonAction1(ActionEvent event) {
+    /*
+    register user
+    */
+
+    }
+    @FXML
+    private void handleButtonAction2(ActionEvent event) {
+        /*
+        close button
+        */
 
     }
 
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+
     }
 
 }

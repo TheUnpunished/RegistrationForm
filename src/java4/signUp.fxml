@@ -24,9 +24,9 @@
             <children>
                 <TextField fx:id="FirstName" layoutX="26.0" layoutY="29.0" promptText="First name" />
                 <PasswordField fx:id="Password" layoutX="26.0" layoutY="127.0" promptText="Password" />
-                <Button fx:id="closeButton" layoutX="32.0" layoutY="230.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="160.0" text="Отмена" />
+                <Button fx:id="closeButton" layoutX="32.0" layoutY="230.0" mnemonicParsing="false" onAction="#handleButtonAction2" prefHeight="27.0" prefWidth="160.0" text="Отмена" />
                 <Hyperlink fx:id="signInLink" layoutX="172.0" layoutY="265.0" text="Войти" />
-                <Button fx:id="signUpButtonSignUp" layoutX="32.0" layoutY="197.0" mnemonicParsing="false" text="Зарегистрироваться" />
+                <Button fx:id="signUpButtonSignUp" layoutX="32.0" layoutY="197.0" mnemonicParsing="false" onAction="#handleButtonAction1" text="Зарегистрироваться" />
             <PasswordField fx:id="repeatPassword" layoutX="26.0" layoutY="160.0" promptText="Repeat Password" />
             <TextField fx:id="LastName" layoutX="26.0" layoutY="62.0" promptText="Last name" />
             <TextField fx:id="Login" layoutX="26.0" layoutY="94.0" promptText="Login" />

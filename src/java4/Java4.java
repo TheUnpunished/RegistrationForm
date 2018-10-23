@@ -10,15 +10,35 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import java.sql.Connection;
+import java.sql.Driver;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 /**
  *
  * @author rbyhf
  */
 public class Java4 extends Application {
-    
+    private static final String USERNAME = "skitel";
+    private static final String PASSWORD = "DFRJ752azY!";
+    private static final String CONN_STRING =
+            "jdbc:mysql://localhost:3306/my";
     @Override
     public void start(Stage stage) throws Exception {
+//        System.out.println("Start");
+        Connection conn = null;
+
+        try{
+            conn = DriverManager.getConnection(CONN_STRING, USERNAME, PASSWORD);
+            System.out.println("Connected");
+
+
+
+        } catch (SQLException e) {
+            System.err.println(e);
+        }
+
         Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
         
         Scene scene = new Scene(root);
