@@ -23,7 +23,13 @@ public class Java4 extends Application {
     private static final String USERNAME = "skitel";
     private static final String PASSWORD = "DFRJ752azY!";
     private static final String CONN_STRING =
-            "jdbc:mysql://localhost:3306/my";
+            "jdbc:mysql://localhost:3306/my"+
+                    "?verifyServerCertificate=false"+
+                    "&useSSL=false"+
+                    "&requireSSL=false"+
+                    "&useLegacyDatetimeCode=false"+
+                    "&amp"+
+                    "&serverTimezone=UTC";
     @Override
     public void start(Stage stage) throws Exception {
 //        System.out.println("Start");
