@@ -17,15 +17,11 @@ public class user {
         this.pass = pass;
     }
 
-    void checkUserByDb(){
+    void checkUserByDb() throws SQLException {
 
-//        String query = "select id,FirstName from logins;";// select query
-//        a.rs = a.stmt.executeQuery(query);
-//        while (rs.next()){
-//            int id = rs.getInt(1);
-//            String name = rs.getString(2);
-//            System.out.println("id: %d \n name: %s", id, name);
-        connection.connectToDB();
+        String query = "select * from logins;";// select query
+
+        connection.performQuery(query);
 
     }
     

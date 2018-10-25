@@ -6,6 +6,7 @@
 package java4;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -27,7 +28,7 @@ public class FXMLDocumentController implements Initializable {
     private TextField TextField2;
     
     @FXML
-    private void handleButtonAction(ActionEvent event) {
+    private void handleButtonAction(ActionEvent event) throws SQLException {
 //        System.out.println("You clicked me!");
 
         String loginOf = TextField1.getText(), passOf = TextField2.getText();

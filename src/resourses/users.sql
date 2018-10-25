@@ -1,1 +1,1 @@
-select * from logins;
+select id, FirstName from logins;
