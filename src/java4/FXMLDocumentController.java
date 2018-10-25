@@ -29,10 +29,13 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void handleButtonAction(ActionEvent event) {
 //        System.out.println("You clicked me!");
+
         String loginOf = TextField1.getText(), passOf = TextField2.getText();
         user newUser = new user(loginOf,passOf);
         boolean accepted = newUser.checkUser(loginOf, passOf);
 //        System.out.println(newUser.login);
+        newUser.checkUserByDb();
+
         if (accepted)
         label.setText(newUser.getLogin() + " вошел");
         else
