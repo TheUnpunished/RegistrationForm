@@ -19,7 +19,7 @@ class connection {
     private static Statement stat;
     private static ResultSet resSet = null;
 
-    static void connect() throws ClassNotFoundException, SQLException {
+    static void connect() throws SQLException {
         /*
             Соединение с бд
          */
@@ -28,7 +28,7 @@ class connection {
         stat = conn.createStatement();
     }
 
-    static void createUser(user currentUser) throws SQLException, NullPointerException, ClassNotFoundException {
+    static void createUser(user currentUser) throws SQLException, NullPointerException {
         /*
             Создание пользователя
          */
@@ -39,7 +39,7 @@ class connection {
         System.out.println("Пользователь добавлен");
     }
 
-    public static void createTable() throws ClassNotFoundException, SQLException
+    static void createTable() throws ClassNotFoundException, SQLException
     {
         /*
             Создание таблицы пользователей
