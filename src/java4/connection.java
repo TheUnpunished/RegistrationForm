@@ -33,9 +33,13 @@ class connection {
         /*
             Создание пользователя
          */
-        String stats = "INSERT INTO users (name, PASS) VALUES ('" +
-                currentUser.getLogin() +"','"+
-                currentUser.getPass()+ "');";
+
+        String stats = "INSERT INTO users (firstName, lastName, login, PASS) VALUES (" +
+                currentUser.getFirstName() + ",'" +
+                currentUser.getLastName() + "','" +
+                currentUser.getLogin() + "','" +
+                currentUser.getPass() + "');";
+        System.out.println(stats);
         stat.execute(stats);
         System.out.println("Пользователь добавлен");
     }
@@ -45,8 +49,12 @@ class connection {
         /*
             Создание таблицы пользователей
          */
-        stat.execute("CREATE TABLE if not exists users (id INTEGER(10) NOT NULL AUTO_INCREMENT, name VARCHAR(100), " +
-                "PASS VARCHAR(100), PRIMARY KEY (id));");
+        stat.execute("CREATE TABLE if not exists users (id INTEGER(10) NOT NULL AUTO_INCREMENT, " +
+                "firstName VARCHAR(100)," +
+                "lastName VARCHAR(100)," +
+                "login VARCHAR(100) not null ," +
+                "PASS VARCHAR(100) not null, " +
+                "PRIMARY KEY (id));");
         System.out.println("Таблица создана или уже существует.");
     }
 
@@ -57,7 +65,7 @@ class connection {
          */
         String password = null;
         try {
-            String state = "SELECT * FROM users WHERE name = '" + login + "';";
+            String state = "SELECT PASS FROM users WHERE login = '" + login + "';";
             resSet = stat.executeQuery(state);
             resSet.next();
             password = resSet.getString("PASS");
@@ -66,7 +74,18 @@ class connection {
             resSet.close();
             return pass.equals(password);
         }
+    }
 
+    static boolean exist(String name){
+        try {
+            String state = "SELECT PASS FROM users WHERE login = '" + name + "';";
+            resSet = stat.executeQuery(state);
+            resSet.next();
+            resSet.getString("PASS");
+            return true;
+        } catch (SQLException e){
+            return false;
+        }
 
     }
 

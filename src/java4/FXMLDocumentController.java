@@ -5,16 +5,18 @@
  */
 package java4;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.stage.Stage;
 
 import static javax.swing.JOptionPane.showMessageDialog;
 
@@ -23,27 +25,26 @@ import static javax.swing.JOptionPane.showMessageDialog;
  * @author rbyhf
  */
 public class FXMLDocumentController implements Initializable {
-    
-    @FXML
-    private Label label;
+
     @FXML
     private TextField TextField1;
     @FXML
     private TextField TextField2;
-    
+    @FXML
+    private Hyperlink HyperLink1;
     @FXML
     private void handleButtonAction(ActionEvent event) throws SQLException {
 //        System.out.println("You clicked me!");
 
         String loginOf = TextField1.getText(), passOf = TextField2.getText();
-        user newUser = new user(loginOf, passOf);
+//        user newUser = new user(loginOf, passOf);
 //        boolean accepted = newUser.checkUser(loginOf, passOf); // проверка через текстовый файл
 //        System.out.println(newUser.login);
         boolean accepted = connection.checkUserByDb(loginOf, passOf);
         if (accepted) {
             Alert alert = new Alert(Alert.AlertType.NONE);
             alert.setTitle("Вход");
-            alert.setContentText("Пользователь " + newUser.getLogin() + " успешно вошел");
+            alert.setContentText("Пользователь успешно вошел");
             alert.getDialogPane().getButtonTypes().add(ButtonType.OK);
             alert.showAndWait();
         }
@@ -62,16 +63,23 @@ public class FXMLDocumentController implements Initializable {
         // TODO
     }
 
-    public void handleButtonAction2(ActionEvent event) throws SQLException, ClassNotFoundException {
+    public void handleButtonAction2(ActionEvent event) throws SQLException, ClassNotFoundException, IOException {
         /*
         создать пользователя
          */
-        String loginOf = TextField1.getText(), passOf = TextField2.getText();
-        user newUser = new user(loginOf, passOf);
-        connection.createUser(newUser);
+        Stage stage1 = (Stage) HyperLink1.getScene().getWindow();
+        stage1.close();
+        Stage stage = new Stage();
+        stage.setTitle("Регистрация");
+        Parent root = FXMLLoader.load(getClass().getResource("signUp.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
     }
 
     public void cancelAction(ActionEvent event) {
-        // TODO
+        TextField1.clear();
+        TextField2.clear();
     }
 }
