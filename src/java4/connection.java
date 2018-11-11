@@ -17,7 +17,7 @@ class connection {
 
     private static Connection conn;
     private static Statement stat;
-    private static ResultSet resSet;
+    private static ResultSet resSet = null;
 
     static void connect() throws ClassNotFoundException, SQLException {
         /*
@@ -62,6 +62,7 @@ class connection {
             password = resSet.getString("PASS");
         }
         finally {
+            resSet.close();
             return pass.equals(password);
         }
 
@@ -75,10 +76,6 @@ class connection {
          */
         conn.close();
         stat.close();
-        resSet.close();
         System.out.println("Соединения закрыты");
     }
-
-
-
 }

@@ -11,8 +11,12 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+
+import static javax.swing.JOptionPane.showMessageDialog;
 
 /**
  *
@@ -36,10 +40,20 @@ public class FXMLDocumentController implements Initializable {
 //        boolean accepted = newUser.checkUser(loginOf, passOf); // проверка через текстовый файл
 //        System.out.println(newUser.login);
         boolean accepted = connection.checkUserByDb(loginOf, passOf);
-        if (accepted)
-        label.setText(newUser.getLogin() + " вошел");
-        else
-        label.setText("Неверно");
+        if (accepted) {
+            Alert alert = new Alert(Alert.AlertType.NONE);
+            alert.setTitle("Вход");
+            alert.setContentText("Пользователь " + newUser.getLogin() + " успешно вошел");
+            alert.getDialogPane().getButtonTypes().add(ButtonType.OK);
+            alert.showAndWait();
+        }
+        else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Ошибка");
+            alert.setHeaderText("Сообщение об ошибке");
+            alert.setContentText("Проверьте введенные логин и пароль");
+            alert.showAndWait();
+        }
 //        */
     }
     
@@ -55,5 +69,9 @@ public class FXMLDocumentController implements Initializable {
         String loginOf = TextField1.getText(), passOf = TextField2.getText();
         user newUser = new user(loginOf, passOf);
         connection.createUser(newUser);
+    }
+
+    public void cancelAction(ActionEvent event) {
+        // TODO
     }
 }
