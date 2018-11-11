@@ -26,6 +26,7 @@ class connection {
         conn = DriverManager.getConnection(CONN_STRING, USERNAME, PASSWORD);
         System.out.println("connected");
         stat = conn.createStatement();
+        
     }
 
     static void createUser(user currentUser) throws SQLException, NullPointerException {
