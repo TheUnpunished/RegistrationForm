@@ -39,6 +39,7 @@ public class Java4 extends Application {
      */
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         connection.connect();
+        connection.createTable();
         launch(args);
         connection.closeDB();
     }

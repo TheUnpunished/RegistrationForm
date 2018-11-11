@@ -32,20 +32,28 @@ public class FXMLDocumentController implements Initializable {
 //        System.out.println("You clicked me!");
 
         String loginOf = TextField1.getText(), passOf = TextField2.getText();
-        user newUser = new user(loginOf,passOf);
-//        boolean accepted = newUser.checkUser(loginOf, passOf);
+        user newUser = new user(loginOf, passOf);
+//        boolean accepted = newUser.checkUser(loginOf, passOf); // проверка через текстовый файл
 //        System.out.println(newUser.login);
         boolean accepted = connection.checkUserByDb(loginOf, passOf);
-
         if (accepted)
         label.setText(newUser.getLogin() + " вошел");
         else
         label.setText("Неверно");
+//        */
     }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-    
+    }
+
+    public void handleButtonAction2(ActionEvent event) throws SQLException, ClassNotFoundException {
+        /*
+        создать пользователя
+         */
+        String loginOf = TextField1.getText(), passOf = TextField2.getText();
+        user newUser = new user(loginOf, passOf);
+        connection.createUser(newUser);
+    }
 }

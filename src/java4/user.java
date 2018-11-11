@@ -17,23 +17,32 @@ public class user {
         this.pass = pass;
     }
 
+    String getLogin() {
+        return login;
+    }
 
-    
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    String getPass() {
+        return pass;
+    }
+
+    public void setPass(String pass) {
+        this.pass = pass;
+    }
+
     boolean checkUser(String log, String pass)
     {
+        /*
+        найти пользователя через текстовый файл
+         */
         try{
             boolean findUser = false;
-            
-           
             Scanner in = new Scanner(new File("file.txt"));
             while(in.hasNextLine()) {
                 String[] strLine = in.nextLine().split(":");
-                
-//                for (int i = 0; i < strLine.length; i++){
-//                    System.out.println(strLine[0] + );
-//
-//                }
-//                System.out.println(strLine[1] + strLine[0].equals(log) + " " + strLine[1] + " " + strLine[1].equals(pass));
                 if (strLine[0].equals(log) && strLine[1].equals(pass)) {
                     return true;
                 }
@@ -44,22 +53,4 @@ public class user {
             return false;
         }
     }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getPass() {
-        return pass;
-    }
-
-    public void setPass(String pass) {
-        this.pass = pass;
-    }
-    
-    
 }
