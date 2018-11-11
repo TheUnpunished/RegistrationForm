@@ -17,13 +17,7 @@ public class user {
         this.pass = pass;
     }
 
-    void checkUserByDb() throws SQLException {
 
-        String query = "select * from logins;";// select query
-
-        connection.performQuery(query);
-
-    }
     
     boolean checkUser(String log, String pass)
     {

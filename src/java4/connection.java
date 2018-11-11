@@ -4,40 +4,44 @@ import java.sql.*;
 import java.lang.String;
 
 public class connection {
-    private static Connection conn = null;
-    private static Statement stmt = null;
-    private static ResultSet rs = null;
-    private static final String USERNAME = "skitel";
-    private static final String PASSWORD = "DFRJ752azY!";
+    private static final String USERNAME = "root";
+    private static final String PASSWORD = "DFRJ752azY@";
     private static final String CONN_STRING =
-            "jdbc:mysql://localhost:3306/my"+
+            "jdbc:mysql://localhost:3306/Users"+
                     "?verifyServerCertificate=false"+
                     "&useSSL=false"+
                     "&requireSSL=false"+
                     "&useLegacyDatetimeCode=false"+
                     "&amp"+
                     "&serverTimezone=UTC";
-    static void connectToDB() {
-        // try connect to db
 
-        try {
-            conn = DriverManager.getConnection(CONN_STRING, USERNAME, PASSWORD);
+    public static Connection conn;
+    public static Statement stat;
+    public static ResultSet resSet;
 
-            System.out.println("Connected");
-            conn.close();
-        } catch (SQLException e) {
-            System.err.println(e);
-        }
+    public static void connect() throws ClassNotFoundException, SQLException {
+        conn = DriverManager.getConnection(CONN_STRING, USERNAME, PASSWORD);
+        System.out.println("connected");
     }
-    static void performQuery(String query) throws SQLException {
-        connectToDB();
-        rs = stmt.executeQuery(query);
-        while (rs.next()) {
-            int id = rs.getInt(1);
-            String name = rs.getString(2);
-            System.out.printf("id: %d name: %s", id, name);
-//        }
 
-        }
+    static boolean checkUserByDb(String login, String pass) throws SQLException {
+        stat = conn.createStatement();
+        String state = "SELECT * FROM simple WHERE name = '" + login + "'";
+        resSet = stat.executeQuery(state);
+        String  password = resSet.getString("PASSWORD");
+        return pass == password;
     }
+
+
+
+    //    static void addUser() throws SQLException {
+//        stat.executeQuery("")
+//    }
+
+    static void closeDB() throws SQLException {
+        conn.close();
+        System.out.println("Соединения закрыты");
+    }
+
+
 }

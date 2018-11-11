@@ -102,3 +102,11 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+.idea/
+lib/
+build.xml
+manifest.mf
+RegistrationForm.iml
+out/
+nbproject/

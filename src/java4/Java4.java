@@ -37,10 +37,10 @@ public class Java4 extends Application {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException, ClassNotFoundException {
+        connection.connect();
         launch(args);
-
-//        connection.connectToDB();
+        connection.closeDB();
     }
     
 }

@@ -33,9 +33,9 @@ public class FXMLDocumentController implements Initializable {
 
         String loginOf = TextField1.getText(), passOf = TextField2.getText();
         user newUser = new user(loginOf,passOf);
-        boolean accepted = newUser.checkUser(loginOf, passOf);
+//        boolean accepted = newUser.checkUser(loginOf, passOf);
 //        System.out.println(newUser.login);
-        newUser.checkUserByDb();
+        boolean accepted = connection.checkUserByDb(loginOf, passOf);
 
         if (accepted)
         label.setText(newUser.getLogin() + " вошел");
