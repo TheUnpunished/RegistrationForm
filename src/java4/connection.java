@@ -33,10 +33,13 @@ class connection {
         /*
             Создание пользователя
          */
-
+        String userName = currentUser.getFirstName().equals("") ? "null"
+                : "'" + currentUser.getFirstName() + "'",
+                passWord = currentUser.getLastName().equals("") ? "null"
+                        : "'" + currentUser.getLastName() + "'";
         String stats = "INSERT INTO users (firstName, lastName, login, PASS) VALUES (" +
-                currentUser.getFirstName() + ",'" +
-                currentUser.getLastName() + "','" +
+                userName + "," +
+                passWord + ",'" +
                 currentUser.getLogin() + "','" +
                 currentUser.getPass() + "');";
         System.out.println(stats);

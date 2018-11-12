@@ -70,10 +70,6 @@ public class signUpController implements Initializable {
                                     LastName.getText(),
                                     Login.getText(),
                                     Password.getText());
-            if (FirstName.getText().equals(""))
-                current.setFirstName(null);
-            if (LastName.getText().equals(""))
-                current.setLastName(null);
             connection.createUser(current);
         }
 
