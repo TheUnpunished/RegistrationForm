@@ -76,6 +76,11 @@ public class signUpController implements Initializable {
                                     Login.getText(),
                                     Password.getText());
             connection.createUser(current);
+            Alert alert = new Alert(Alert.AlertType.NONE);
+            alert.setTitle("Регистрация");
+            alert.setContentText("Пользователь зарегистрирован");
+            alert.getDialogPane().getButtonTypes().add(ButtonType.OK);
+            alert.showAndWait();
         }
 
     }

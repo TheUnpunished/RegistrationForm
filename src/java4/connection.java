@@ -42,7 +42,7 @@ class connection {
                 passWord + ",'" +
                 currentUser.getLogin() + "','" +
                 currentUser.getPass() + "');";
-        System.out.println(stats);
+//        System.out.println(stats);
         stat.execute(stats);
         System.out.println("Пользователь добавлен");
     }
