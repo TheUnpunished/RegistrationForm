@@ -43,5 +43,26 @@ public class goodsConntroller implements Initializable {
     productSum.setCellValueFactory(new PropertyValueFactory<>("productSum"));
     productCount.setCellValueFactory(new PropertyValueFactory<>("productCount"));
     CatalogTable.setItems(Data);
+
+
+    showProductDetails(null);
+
+        CatalogTable.getSelectionModel().selectedItemProperty().
+                addListener(((observable, oldValue, newValue)
+                        -> showProductDetails(newValue)));
+    }
+
+    private void showProductDetails(product current){
+        if (current != null){
+            productIdLabel.setText(current.getProductId().toString());
+            productNameLabel.setText(String.valueOf(current.getProductName()));
+            productSumLabel.setText(String.valueOf(current.getProductSum()));
+            productCountLabel.setText(String.valueOf(current.getProductCount()));
+        } else {
+            productIdLabel.setText("");
+            productNameLabel.setText("");
+            productSumLabel.setText("");
+            productCountLabel.setText("");
+        }
     }
 }
