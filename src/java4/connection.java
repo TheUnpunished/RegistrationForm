@@ -15,7 +15,7 @@ class connection {
                     "&amp"+
                     "&serverTimezone=UTC";
 
-    private static Connection conn;
+    public static Connection conn;
     private static Statement stat;
     private static ResultSet resSet = null;
 
@@ -29,7 +29,7 @@ class connection {
         
     }
 
-    static void createUser(user currentUser) throws SQLException, NullPointerException {
+    public static void createUser(user currentUser) throws SQLException, NullPointerException {
         /*
             Создание пользователя
          */

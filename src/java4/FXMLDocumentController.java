@@ -33,7 +33,9 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Hyperlink HyperLink1;
     @FXML
-    private void handleButtonAction(ActionEvent event) throws SQLException {
+    private Button buttonAction1;
+    @FXML
+    private void handleButtonAction(ActionEvent event) throws SQLException, IOException {
 //        System.out.println("You clicked me!");
 
         String loginOf = TextField1.getText(), passOf = TextField2.getText();
@@ -42,11 +44,14 @@ public class FXMLDocumentController implements Initializable {
 //        System.out.println(newUser.login);
         boolean accepted = connection.checkUserByDb(loginOf, passOf);
         if (accepted) {
-            Alert alert = new Alert(Alert.AlertType.NONE);
-            alert.setTitle("Вход");
-            alert.setContentText("Пользователь успешно вошел");
-            alert.getDialogPane().getButtonTypes().add(ButtonType.OK);
-            alert.showAndWait();
+            Stage stage1 = (Stage) buttonAction1.getScene().getWindow();
+            stage1.close();
+            Stage stage = new Stage();
+            stage.setTitle("Товары");
+            Parent root = FXMLLoader.load(getClass().getResource("goods.fxml"));
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
         }
         else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
