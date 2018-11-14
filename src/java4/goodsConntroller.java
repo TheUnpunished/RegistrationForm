@@ -74,12 +74,17 @@ public class goodsConntroller implements Initializable {
         }
     }
     @FXML
-    private void Deleting(ActionEvent event) {
+    private void Deleting(ActionEvent event) throws SQLException {
         int selectedIndex = CatalogTable.getSelectionModel().getSelectedIndex();
 //        System.out.println(selectedIndex);
         if (selectedIndex >= 0) {
             CatalogTable.getItems().remove(selectedIndex);
-//            CatalogTable.getItems().
-        };
+//            CatalogTable.getItems().forEach(product -> System.out.println(product.toString()));
+            product.rewriteDb(CatalogTable.getItems());
+        }
+    }
+
+    public void adding(ActionEvent event) {
+        
     }
 }

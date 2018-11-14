@@ -64,6 +64,9 @@ class connection {
     }
 
     static ObservableList<product> initDB(ObservableList<product> list) throws SQLException {
+        /*
+            Инициализация списка товаров
+         */
         resSet = stat.executeQuery("select artikul, name, sum, count from goods;") ;
         while (resSet.next()){
             list.add(new product(resSet.getInt("artikul"),
@@ -92,6 +95,9 @@ class connection {
     }
 
     static boolean exist(String name){
+        /*
+            Проверка существования логина
+         */
         try {
             String state = "SELECT PASS FROM users WHERE login = '" + name + "';";
             resSet = stat.executeQuery(state);
@@ -104,8 +110,20 @@ class connection {
 
     }
 
-    //добавить класс, который перезаписывает, данные, а ещё создать занова таблицу и тд.
+    //добавить класс, который перезаписывает, данные, а ещё создать заново таблицу и тд.
+    static void addItem(product curr) throws SQLException {
+        /*
+        Перезаписывание каждого товара
+         */
+        String s = "INSERT INTO `goods` (`id`, `artikul`, `name`, `count`, `sum`) VALUES (NULL, '"+
+                curr.getProductId() + "', '" +
+                curr.getProductName() + "', '"+
+                curr.getProductCount() + "', '" +
+                curr.getProductSum() + "'); ";
+        System.out.println(s);
+        stat.execute(s);
 
+    }
 
     static void closeDB() throws SQLException, NullPointerException{
         /*
@@ -114,5 +132,12 @@ class connection {
         conn.close();
         stat.close();
         System.out.println("Соединения закрыты");
+    }
+
+    public static void clearDb() throws SQLException {
+        /*
+        очистить таблицу
+         */
+        stat.execute("TRUNCATE TABLE goods;");
     }
 }

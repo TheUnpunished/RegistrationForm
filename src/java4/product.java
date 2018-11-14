@@ -2,6 +2,8 @@ package java4;
 
 import javafx.collections.ObservableList;
 
+import java.sql.SQLException;
+
 public class product {
     String productName;
     Integer productId, productCount;
@@ -46,7 +48,24 @@ public class product {
         this.productSum = productSum;
     }
 
-    static void reWriteDb(ObservableList<product> list){
+    @Override
+    public String toString() {
+        return "product{" +
+                "productName='" + productName + '\'' +
+                ", productId=" + productId +
+                ", productCount=" + productCount +
+                ", productSum=" + productSum +
+                '}';
+    }
 
+    static void rewriteDb(ObservableList<product> list) throws SQLException {
+        connection.clearDb();
+        list.forEach(product -> {
+            try {
+                connection.addItem(product);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        });
     }
 }
