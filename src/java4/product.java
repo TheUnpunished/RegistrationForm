@@ -1,5 +1,7 @@
 package java4;
 
+import javafx.collections.ObservableList;
+
 public class product {
     String productName;
     Integer productId, productCount;
@@ -42,5 +44,9 @@ public class product {
 
     public void setProductSum(Double productSum) {
         this.productSum = productSum;
+    }
+
+    static void reWriteDb(ObservableList<product> list){
+
     }
 }

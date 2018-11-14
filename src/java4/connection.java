@@ -104,6 +104,8 @@ class connection {
 
     }
 
+    //добавить класс, который перезаписывает, данные, а ещё создать занова таблицу и тд.
+
 
     static void closeDB() throws SQLException, NullPointerException{
         /*

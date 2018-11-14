@@ -77,6 +77,9 @@ public class goodsConntroller implements Initializable {
     private void Deleting(ActionEvent event) {
         int selectedIndex = CatalogTable.getSelectionModel().getSelectedIndex();
 //        System.out.println(selectedIndex);
-        if (selectedIndex >= 0) CatalogTable.getItems().remove(selectedIndex);
+        if (selectedIndex >= 0) {
+            CatalogTable.getItems().remove(selectedIndex);
+//            CatalogTable.getItems().
+        };
     }
 }
