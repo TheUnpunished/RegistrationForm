@@ -10,6 +10,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class goodsConntroller implements Initializable {
@@ -37,7 +39,13 @@ public class goodsConntroller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-    Data.add(new product(1, "chair", 1500.0, 2));
+        try {
+            connection.initDB(Data);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+//        Data.add(new product(1, "chair", 1500.0, 2));
+//        Data.add(new product(2,"cnjk", 123.0, 4));
     productId.setCellValueFactory(new PropertyValueFactory<>("productId"));
     productName.setCellValueFactory(new PropertyValueFactory<>("productName"));
     productSum.setCellValueFactory(new PropertyValueFactory<>("productSum"));

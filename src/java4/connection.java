@@ -1,5 +1,7 @@
 package java4;
 
+import javafx.collections.ObservableList;
+
 import java.sql.*;
 import java.lang.String;
 
@@ -61,6 +63,16 @@ class connection {
         System.out.println("Таблица создана или уже существует.");
     }
 
+    static ObservableList<product> initDB(ObservableList<product> list) throws SQLException {
+        resSet = stat.executeQuery("select artikul, name, sum, count from goods;") ;
+        while (resSet.next()){
+            list.add(new product(resSet.getInt("artikul"),
+                                resSet.getString("name"),
+                                resSet.getDouble("sum"),
+                                resSet.getInt("count")));
+        }
+        return list;
+    }
 
     static boolean checkUserByDb(String login, String pass) throws SQLException {
         /*
