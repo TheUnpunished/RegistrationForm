@@ -2,6 +2,7 @@ package java4;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -10,7 +11,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
@@ -72,5 +72,11 @@ public class goodsConntroller implements Initializable {
             productSumLabel.setText("");
             productCountLabel.setText("");
         }
+    }
+    @FXML
+    private void Deleting(ActionEvent event) {
+        int selectedIndex = CatalogTable.getSelectionModel().getSelectedIndex();
+//        System.out.println(selectedIndex);
+        if (selectedIndex >= 0) CatalogTable.getItems().remove(selectedIndex);
     }
 }
