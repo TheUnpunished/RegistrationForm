@@ -18,7 +18,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
-import static javax.swing.JOptionPane.showMessageDialog;
 
 /**
  *
