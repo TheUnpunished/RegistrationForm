@@ -16,6 +16,10 @@ public class product {
         this.productSum = productSum;
     }
 
+    public product() {
+
+    }
+
     public String getProductName() {
         return productName;
     }

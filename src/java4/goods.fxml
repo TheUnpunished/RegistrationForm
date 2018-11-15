@@ -60,7 +60,7 @@
                      <children>
                         <Button fx:id="addElem" layoutX="159.0" layoutY="222.0" mnemonicParsing="false" onAction="#adding" text="Добавить" AnchorPane.rightAnchor="14.0" />
                         <Button fx:id="delete" layoutX="159.0" layoutY="284.0" mnemonicParsing="false" onAction="#Deleting" prefHeight="25.0" prefWidth="84.0" text="Удалить" />
-                        <Button layoutX="159.0" layoutY="253.0" mnemonicParsing="false" text="Изменить" AnchorPane.rightAnchor="13.0" />
+                        <Button fx:id="editButton" layoutX="159.0" layoutY="253.0" mnemonicParsing="false" onAction="#actionEdit" text="Изменить" AnchorPane.rightAnchor="13.0" />
                      </children>
                   </HBox>
                </children>

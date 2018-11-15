@@ -6,13 +6,17 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
+import javafx.scene.*;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import sun.plugin.javascript.navig.Anchor;
 
 import java.io.IOException;
 import java.net.URL;
@@ -44,6 +48,9 @@ public class goodsConntroller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        /*
+        Заполняем каталог товарами
+         */
         try {
             connection.initDB(Data);
         } catch (SQLException e) {
@@ -66,6 +73,9 @@ public class goodsConntroller implements Initializable {
     }
 
     private void showProductDetails(product current){
+        /*
+        заполнить поля текущим продуктом
+         */
         if (current != null){
             productIdLabel.setText(current.getProductId().toString());
             productNameLabel.setText(String.valueOf(current.getProductName()));
@@ -80,6 +90,11 @@ public class goodsConntroller implements Initializable {
     }
     @FXML
     private void Deleting(ActionEvent event) throws SQLException {
+        /*
+           При нажатии кнопки удалить выбранный элемент извлекается,
+           создается новый список товаров,
+           который перезаписывается в базу данных
+         */
         int selectedIndex = CatalogTable.getSelectionModel().getSelectedIndex();
 //        System.out.println(selectedIndex);
         if (selectedIndex >= 0) {
@@ -89,13 +104,67 @@ public class goodsConntroller implements Initializable {
         }
     }
 
+    @FXML
     public void adding(ActionEvent event) throws IOException {
-//        stage1.close();
-        Stage stage = new Stage();
-        stage.setTitle("Добавить товар");
-        Parent root = FXMLLoader.load(getClass().getResource("addingAction.fxml"));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        /*
+        Добавление товара в базу данных при нажатии кнопки
+         */
+    product temp = new product();
+
+    boolean okClicked = this.showProductEditDialog(temp);
+    if (okClicked){
+        Data.add(temp);
+    }
+    }
+
+    public boolean showProductEditDialog(product current){
+        /*
+            При нажатии кнопки добавить или изменить запускается данное диалоговое окно
+         */
+        try{
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(addController.class.getResource("addingAction.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+
+
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Редактировать продукт");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(null);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            addController controller = loader.getController();
+            controller.setStageDialog(dialogStage);
+            controller.setProduct(current);
+
+            dialogStage.showAndWait();
+
+            return controller.isOkClicked();
+        } catch (IOException e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @FXML
+    public void actionEdit(ActionEvent event) {
+        product selected = CatalogTable.getSelectionModel().getSelectedItem();
+        if (selected != null){
+            boolean okClicked = showProductEditDialog(selected);
+            if (okClicked){
+                showProductDetails(selected);
+                int selectedIndex = CatalogTable.getSelectionModel().getSelectedIndex();
+                Data.set(selectedIndex, selected);
+            } else {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.initOwner(null);
+                alert.setTitle("Ничего не выбрано");
+                alert.setHeaderText("Нет выбранного продукта");
+                alert.setContentText("Выберите продукт");
+
+                alert.showAndWait();
+            }
+        }
     }
 }

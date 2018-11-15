@@ -35,7 +35,7 @@ public class addController implements Initializable {
         stageDialog.close();
     }
     @FXML
-    private void actionOK(ActionEvent event) throws SQLException {
+    private void actionOK() throws SQLException {
         /*
         при нажатии кнопки ок создаем новый объект продукта,
         берем данные из заполненных ранее полей.
@@ -58,10 +58,12 @@ public class addController implements Initializable {
         установить текущие значения продукта в полях сцены
          */
         this.productCurrent = productCurrent;
-        nameField.setText(productCurrent.getProductId().toString());
-        idField.setText(String.valueOf(productCurrent.getProductName()));
-        sumField.setText(String.valueOf(productCurrent.getProductSum()));
+        idField.setText(productCurrent.getProductId().toString());
+        nameField.setText(String.valueOf(productCurrent.getProductName()));
         countField.setText(String.valueOf(productCurrent.getProductCount()));
+        sumField.setText(String.valueOf(productCurrent.getProductSum()));
+
+
     }
 
     public void setStageDialog(Stage stageDialog) {
@@ -109,8 +111,6 @@ public class addController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // TODO
+//        setStageDialog(stageDialog);
     }
-
-
 }
