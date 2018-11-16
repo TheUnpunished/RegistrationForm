@@ -2,13 +2,10 @@ package java4;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.*;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -16,7 +13,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import sun.plugin.javascript.navig.Anchor;
 
 import java.io.IOException;
 import java.net.URL;
@@ -56,8 +52,6 @@ public class goodsConntroller implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-//        Data.add(new product(1, "chair", 1500.0, 2));
-//        Data.add(new product(2,"cnjk", 123.0, 4));
     productId.setCellValueFactory(new PropertyValueFactory<>("productId"));
     productName.setCellValueFactory(new PropertyValueFactory<>("productName"));
     productSum.setCellValueFactory(new PropertyValueFactory<>("productSum"));
@@ -89,14 +83,13 @@ public class goodsConntroller implements Initializable {
         }
     }
     @FXML
-    private void Deleting(ActionEvent event) throws SQLException {
+    private void Deleting() throws SQLException {
         /*
            При нажатии кнопки удалить выбранный элемент извлекается,
            создается новый список товаров,
            который перезаписывается в базу данных
          */
         int selectedIndex = CatalogTable.getSelectionModel().getSelectedIndex();
-//        System.out.println(selectedIndex);
         if (selectedIndex >= 0) {
             CatalogTable.getItems().remove(selectedIndex);
 //            CatalogTable.getItems().forEach(product -> System.out.println(product.toString()));
@@ -105,7 +98,7 @@ public class goodsConntroller implements Initializable {
     }
 
     @FXML
-    public void adding() throws IOException, SQLException {
+    public void adding() throws SQLException {
         /*
         Добавление товара в базу данных при нажатии кнопки
          */
@@ -117,14 +110,14 @@ public class goodsConntroller implements Initializable {
         }
     }
 
-    public boolean showProductEditDialog(product current){
+    private boolean showProductEditDialog(product current){
         /*
             При нажатии кнопки добавить или изменить запускается данное диалоговое окно
          */
         try{
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(addController.class.getResource("addingAction.fxml"));
-            AnchorPane page = (AnchorPane) loader.load();
+            AnchorPane page = loader.load();
 
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Редактировать продукт");

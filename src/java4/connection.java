@@ -17,7 +17,7 @@ class connection {
                     "&amp"+
                     "&serverTimezone=UTC";
 
-    public static Connection conn;
+    private static Connection conn;
     private static Statement stat;
     private static ResultSet resSet = null;
 
@@ -31,7 +31,7 @@ class connection {
         
     }
 
-    public static void createUser(user currentUser) throws SQLException, NullPointerException {
+    static void createUser(user currentUser) throws SQLException, NullPointerException {
         /*
             Создание пользователя
          */
@@ -49,7 +49,7 @@ class connection {
         System.out.println("Пользователь добавлен");
     }
 
-    static void createTable() throws ClassNotFoundException, SQLException
+    static void createTable() throws SQLException
     {
         /*
             Создание таблицы пользователей
