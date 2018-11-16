@@ -120,7 +120,7 @@ class connection {
                 curr.getProductName() + "', '"+
                 curr.getProductCount() + "', '" +
                 curr.getProductSum() + "'); ";
-        System.out.println(s);
+//        System.out.println(s);
         stat.execute(s);
 
     }

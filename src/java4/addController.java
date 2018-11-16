@@ -58,12 +58,12 @@ public class addController implements Initializable {
         установить текущие значения продукта в полях сцены
          */
         this.productCurrent = productCurrent;
-        System.out.println("sas");
-        System.out.println("a\n" + productCurrent.getProductId().toString());
-        idField.setText(productCurrent.getProductId().toString());
+//        System.out.println("sas");
+//        System.out.println("a\n" + productCurrent.getProductId().toString());
+        idField.setText(productCurrent.getProductId() == null ? "" :productCurrent.getProductId().toString());
         nameField.setText(productCurrent.getProductName());
-        countField.setText(productCurrent.getProductCount().toString() );
-        sumField.setText(productCurrent.getProductSum().toString());
+        countField.setText(productCurrent.getProductCount() == null ? "" : productCurrent.getProductCount().toString());
+        sumField.setText(productCurrent.getProductSum() == null ? "" : productCurrent.getProductSum().toString());
     }
 
     void setStageDialog(Stage stageDialog) {
@@ -85,18 +85,18 @@ public class addController implements Initializable {
         Проверка на правильность ввода данных
          */
         String errorMessage = "";
-        System.out.println(idField.getText().equals(""));
+//        System.out.println(idField.getText().equals(""));
 //        System.out.println(nameField.getText().length());
 //        System.out.println(countField.getText().length());
 //        System.out.println(sumField.getText().length());
-        if (idField.getText().length() == 0 || idField.getText() == null) errorMessage += "Нет доступного артикула \n";
+        if (idField.getText().length() == 0 || idField.getText() == null || !idField.getText().matches("[-+]?\\d+")) errorMessage += "Нет доступного артикула \n";
 
         if (nameField.getText().length() == 0 || nameField.getText() == null)
             errorMessage += "Нет доступного наименования товара \n";
 
-        if (sumField.getText().length() == 0 || sumField.getText() == null) errorMessage += "Нет доступной суммы\n";
+        if (sumField.getText().length() == 0 || sumField.getText() == null || !sumField.getText().matches("((-|\\\\+)?[0-9]+(\\\\.[0-9]+)?)+")) errorMessage += "Нет доступной суммы\n";
 
-        if (countField.getText().length() == 0 || countField.getText() == null) errorMessage += "Нет доступного количества\n";
+        if (countField.getText().length() == 0 || countField.getText() == null || !countField.getText().matches("[-+]?\\d+")) errorMessage += "Нет доступного количества\n";
 
         if (errorMessage.length() == 0 ){
             return true;
