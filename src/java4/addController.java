@@ -89,14 +89,14 @@ public class addController implements Initializable {
 //        System.out.println(nameField.getText().length());
 //        System.out.println(countField.getText().length());
 //        System.out.println(sumField.getText().length());
-        if (idField.getText().length() == 0 || idField.getText() == null || !idField.getText().matches("[-+]?\\d+")) errorMessage += "Нет доступного артикула \n";
+        if (idField.getText().length() == 0 || !idField.getText().matches("[-+]?\\d+")) errorMessage += "Нет доступного артикула \n";
 
-        if (nameField.getText().length() == 0 || nameField.getText() == null)
+        if (nameField.getText() == null)
             errorMessage += "Нет доступного наименования товара \n";
 
-        if (sumField.getText().length() == 0 || sumField.getText() == null || !sumField.getText().matches("((-|\\\\+)?[0-9]+(\\\\.[0-9]+)?)+")) errorMessage += "Нет доступной суммы\n";
+        if (countField.getText().length() == 0  || !countField.getText().matches("[-+]?\\d+")) errorMessage += "Нет доступного количества\n";
 
-        if (countField.getText().length() == 0 || countField.getText() == null || !countField.getText().matches("[-+]?\\d+")) errorMessage += "Нет доступного количества\n";
+        if (sumField.getText().length() == 0  || !sumField.getText().matches("((-|\\\\+)?[0-9]+(\\\\.[0-9]+)?)+")) errorMessage += "Нет доступной суммы\n";
 
         if (errorMessage.length() == 0 ){
             return true;
