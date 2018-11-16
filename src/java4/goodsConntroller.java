@@ -105,16 +105,15 @@ public class goodsConntroller implements Initializable {
     }
 
     @FXML
-    public void adding(ActionEvent event) throws IOException {
+    public void adding() throws IOException {
         /*
         Добавление товара в базу данных при нажатии кнопки
          */
     product temp = new product();
-
-    boolean okClicked = this.showProductEditDialog(temp);
-    if (okClicked){
+    boolean okClicked = showProductEditDialog(temp);
+        if (okClicked){
         Data.add(temp);
-    }
+        }
     }
 
     public boolean showProductEditDialog(product current){
@@ -125,7 +124,6 @@ public class goodsConntroller implements Initializable {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(addController.class.getResource("addingAction.fxml"));
             AnchorPane page = (AnchorPane) loader.load();
-
 
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Редактировать продукт");
@@ -148,7 +146,7 @@ public class goodsConntroller implements Initializable {
     }
 
     @FXML
-    public void actionEdit(ActionEvent event) {
+    public void actionEdit() {
         product selected = CatalogTable.getSelectionModel().getSelectedItem();
         if (selected != null){
             boolean okClicked = showProductEditDialog(selected);

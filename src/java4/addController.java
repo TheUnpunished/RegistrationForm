@@ -34,6 +34,7 @@ public class addController implements Initializable {
     private void cancelAction(){
         stageDialog.close();
     }
+
     @FXML
     private void actionOK() throws SQLException {
         /*
@@ -58,12 +59,10 @@ public class addController implements Initializable {
         установить текущие значения продукта в полях сцены
          */
         this.productCurrent = productCurrent;
-        idField.setText(productCurrent.getProductId().toString());
-        nameField.setText(String.valueOf(productCurrent.getProductName()));
-        countField.setText(String.valueOf(productCurrent.getProductCount()));
-        sumField.setText(String.valueOf(productCurrent.getProductSum()));
-
-
+        idField.setText(productCurrent.getProductId() == null ? "" :productCurrent.getProductId().toString());
+        nameField.setText(productCurrent.getProductName());
+        countField.setText(productCurrent.getProductCount() == null ? "" : String.valueOf(productCurrent.getProductCount()));
+        sumField.setText(productCurrent.getProductSum() == null ? "" : String.valueOf(productCurrent.getProductSum()));
     }
 
     public void setStageDialog(Stage stageDialog) {
