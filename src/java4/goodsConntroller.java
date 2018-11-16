@@ -105,7 +105,7 @@ public class goodsConntroller implements Initializable {
     }
 
     @FXML
-    public void adding() throws IOException {
+    public void adding() throws IOException, SQLException {
         /*
         Добавление товара в базу данных при нажатии кнопки
          */
@@ -113,6 +113,7 @@ public class goodsConntroller implements Initializable {
     boolean okClicked = showProductEditDialog(temp);
         if (okClicked){
         Data.add(temp);
+        connection.addItem(temp);
         }
     }
 
@@ -146,7 +147,10 @@ public class goodsConntroller implements Initializable {
     }
 
     @FXML
-    public void actionEdit() {
+    public void actionEdit() throws SQLException {
+    /*
+    кнопка редактировать в сцене товаров
+     */
         product selected = CatalogTable.getSelectionModel().getSelectedItem();
         if (selected != null){
             boolean okClicked = showProductEditDialog(selected);
@@ -154,15 +158,15 @@ public class goodsConntroller implements Initializable {
                 showProductDetails(selected);
                 int selectedIndex = CatalogTable.getSelectionModel().getSelectedIndex();
                 Data.set(selectedIndex, selected);
-            } else {
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.initOwner(null);
-                alert.setTitle("Ничего не выбрано");
-                alert.setHeaderText("Нет выбранного продукта");
-                alert.setContentText("Выберите продукт");
-
-                alert.showAndWait();
-            }
+                product.rewriteDb(CatalogTable.getItems());
+            } //else {
+//                Alert alert = new Alert(Alert.AlertType.WARNING);
+//                alert.initOwner(null);
+//                alert.setTitle("Ничего не выбрано");
+//                alert.setHeaderText("Нет выбранного продукта");
+//                alert.setContentText("Выберите продукт");
+//                alert.showAndWait();
+//            }
         }
     }
 }

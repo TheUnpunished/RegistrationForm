@@ -36,17 +36,16 @@ public class addController implements Initializable {
     }
 
     @FXML
-    private void actionOK() throws SQLException {
+    private void actionOK() {
         /*
         при нажатии кнопки ок создаем новый объект продукта,
         берем данные из заполненных ранее полей.
          */
         if (isInputValid()){
-            productCurrent = new product(Integer.parseInt(idField.getText()),
-                                         nameField.getText(),
-                                         Double.parseDouble(countField.getText()),
-                                         Integer.parseInt(sumField.getText()));
-            connection.addItem(productCurrent);
+            productCurrent.setProductId(Integer.parseInt(idField.getText()));
+            productCurrent.setProductName(String.valueOf(nameField.getText()));
+            productCurrent.setProductCount(Integer.parseInt(countField.getText()));
+            productCurrent.setProductSum(Double.parseDouble(sumField.getText()));
             isOkClicked = true;
             stageDialog.close();
         }
@@ -87,7 +86,8 @@ public class addController implements Initializable {
 
         if (idField.getText().length() == 0 || idField.getText() == null) errorMessage += "Нет доступного артикула \n";
 
-        if (nameField.getText().length() == 0 || nameField.getText() == null) errorMessage += "Нет доступного наименования товара \n";
+        if (nameField.getText().length() == 0 || nameField.getText() == null)
+            errorMessage += "Нет доступного наименования товара \n";
 
         if (sumField.getText().length() == 0 || sumField.getText() == null) errorMessage += "Нет доступной суммы\n";
 
