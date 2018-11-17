@@ -4,10 +4,9 @@ import javafx.collections.ObservableList;
 
 import java.sql.*;
 import java.lang.String;
+import java.util.Properties;
 
 class connection {
-    private static final String USERNAME = "root";
-    private static final String PASSWORD = "DFRJ752azY@";
     private static final String CONN_STRING =
             "jdbc:mysql://localhost:3306/Users"+
                     "?verifyServerCertificate=false"+
@@ -21,11 +20,17 @@ class connection {
     private static Statement stat;
     private static ResultSet resSet = null;
 
-    static void connect() throws SQLException {
+    static void connect() throws SQLException, ClassNotFoundException, IllegalAccessException, InstantiationException {
         /*
             Соединение с бд
          */
-        conn = DriverManager.getConnection(CONN_STRING, USERNAME, PASSWORD);
+        Properties p = new Properties();
+        p.setProperty("user","root");
+        p.setProperty("password","DFRJ752azY@");
+        p.setProperty("useUnicode","true");
+        p.setProperty("characterEncoding","cp1251");
+        Class.forName ("com.mysql.jdbc.Driver").newInstance();
+        conn = DriverManager.getConnection(CONN_STRING, p);
         System.out.println("connected");
         stat = conn.createStatement();
         

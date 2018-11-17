@@ -41,7 +41,7 @@ public class addController implements Initializable {
         берем данные из заполненных ранее полей.
          */
         if (isInputValid()){
-            System.out.println("here");
+//            System.out.println("here");
             productCurrent.setProductId(Integer.parseInt(idField.getText()));
             productCurrent.setProductName(String.valueOf(nameField.getText()));
             productCurrent.setProductCount(Integer.parseInt(countField.getText()));
@@ -96,7 +96,12 @@ public class addController implements Initializable {
 
         if (countField.getText().length() == 0  || !countField.getText().matches("[-+]?\\d+")) errorMessage += "Нет доступного количества\n";
 
-        if (sumField.getText().length() == 0  || !sumField.getText().matches("((-|\\\\+)?[0-9]+(\\\\.[0-9]+)?)+")) errorMessage += "Нет доступной суммы\n";
+        try {
+            Double.parseDouble(sumField.getText());
+            if (sumField.getText().length() == 0) errorMessage += "Нет доступной суммы\n";
+        } catch (NumberFormatException e){
+            errorMessage += "Нет доступной суммы\n";
+        }
 
         if (errorMessage.length() == 0 ){
             return true;

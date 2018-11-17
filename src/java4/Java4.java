@@ -34,7 +34,7 @@ public class Java4 extends Application {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws SQLException, ClassNotFoundException {
+    public static void main(String[] args) throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
         connection.connect();
         connection.createTable();
         launch(args);
