@@ -61,7 +61,7 @@
             </TabPane>
          </center>
          <bottom>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Данное приложение создано Фаилем 09-753" BorderPane.alignment="CENTER" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Данное приложение создано" BorderPane.alignment="CENTER" />
          </bottom>
       </BorderPane>
    </children>
