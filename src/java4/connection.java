@@ -44,11 +44,12 @@ class connection {
                 : "'" + currentUser.getFirstName() + "'",
                 passWord = currentUser.getLastName().equals("") ? "null"
                         : "'" + currentUser.getLastName() + "'";
-        String stats = "INSERT INTO users (firstName, lastName, login, PASS) VALUES (" +
+        String stats = "INSERT INTO users (firstName, lastName, login, PASS, isAdmin) VALUES (" +
                 userName + "," +
                 passWord + ",'" +
                 currentUser.getLogin() + "','" +
-                currentUser.getPass() + "');";
+                currentUser.getPass() + "','" +
+                "0');";
 //        System.out.println(stats);
         stat.execute(stats);
         System.out.println("Пользователь добавлен");
@@ -64,6 +65,7 @@ class connection {
                 "lastName VARCHAR(100)," +
                 "login VARCHAR(100) not null ," +
                 "PASS VARCHAR(100) not null, " +
+                "isAdmin Boolean not null," +
                 "PRIMARY KEY (id));");
         System.out.println("Таблица создана или уже существует.");
     }
@@ -143,5 +145,12 @@ class connection {
         очистить таблицу
          */
         stat.execute("TRUNCATE TABLE goods;");
+    }
+
+    public static boolean isAdmin(String loginOf) throws SQLException {
+            String state = "SELECT isAdmin FROM users WHERE login = '" + loginOf + "';";
+            resSet = stat.executeQuery(state);
+            resSet.next();
+            return resSet.getBoolean("isAdmin");
     }
 }

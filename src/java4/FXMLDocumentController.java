@@ -41,16 +41,27 @@ public class FXMLDocumentController implements Initializable {
 //        user newUser = new user(loginOf, passOf);
 //        boolean accepted = newUser.checkUser(loginOf, passOf); // проверка через текстовый файл
 //        System.out.println(newUser.login);
-        boolean accepted = connection.checkUserByDb(loginOf, passOf);
+        boolean accepted = connection.checkUserByDb(loginOf, passOf), admin = connection.isAdmin(loginOf);
         if (accepted) {
-            Stage stage1 = (Stage) buttonAction1.getScene().getWindow();
-            stage1.close();
-            Stage stage = new Stage();
-            stage.setTitle("Товары");
-            Parent root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
+            if (admin) {
+                Stage stage1 = (Stage) buttonAction1.getScene().getWindow();
+                stage1.close();
+                Stage stage = new Stage();
+                stage.setTitle("Товары");
+                Parent root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            } else {
+                Stage stage1 = (Stage) buttonAction1.getScene().getWindow();
+                stage1.close();
+                Stage stage = new Stage();
+                stage.setTitle("Товары");
+                Parent root = FXMLLoader.load(getClass().getResource("goods.fxml"));
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            }
         }
         else {
             Alert alert = new Alert(Alert.AlertType.ERROR);

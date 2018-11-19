@@ -33,12 +33,12 @@
                   <Menu mnemonicParsing="false" text="Товары">
                     <items>
                         <MenuItem mnemonicParsing="false" onAction="#clickOpenGoods" text="Посмотреть каталог товаров" />
-                      <MenuItem mnemonicParsing="false" text="Открыть каталог в новом окне" />
+                      <MenuItem mnemonicParsing="false" onAction="#openNewWindow" text="Открыть каталог в новом окне" />
                     </items>
                   </Menu>
                   <Menu mnemonicParsing="false" text="Помощь">
                     <items>
-                      <MenuItem mnemonicParsing="false" text="О программе" />
+                      <MenuItem mnemonicParsing="false" onAction="#showInfo" text="О программе" />
                     </items>
                   </Menu>
               </menus>
