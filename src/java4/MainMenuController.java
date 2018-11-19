@@ -1,5 +1,6 @@
 package java4;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -10,6 +11,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class MainMenuController implements Initializable {
+
+    @FXML
+    private Tab orderTab;
 
     @FXML
     private Tab catalogTab;
@@ -33,10 +37,17 @@ public class MainMenuController implements Initializable {
         tabPane.getSelectionModel().select(catalogTab);
     }
 
+    private void setOrderTab(){
+        tabPane.getSelectionModel().select(orderTab);
+    }
 
 
 @FXML
     public void clickOpenGoods(javafx.event.ActionEvent event) {
         setCatalogTab();
+    }
+@FXML
+    public void clickShowOrders(ActionEvent event) {
+        setOrderTab();
     }
 }
