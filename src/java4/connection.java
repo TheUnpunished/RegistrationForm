@@ -122,12 +122,14 @@ class connection {
         /*
         Перезаписывание каждого товара
          */
-
-        stat.execute("INSERT INTO `goods` (`id`, `artikul`, `name`, `count`, `sum`) VALUES (NULL, '"+
+        curr.setProductName(curr.getProductName().replaceAll("[\\W]", ""));
+        String a = "INSERT INTO `goods` (`id`, `artikul`, `name`, `count`, `sum`) VALUES (NULL, '"+
                 curr.getProductId() + "', '" +
                 curr.getProductName() + "', '"+
                 curr.getProductCount() + "', '" +
-                curr.getProductSum() + "'); ");
+                curr.getProductSum() + "'); ";
+//        System.out.println(a);
+        stat.execute(a);
 
     }
 
