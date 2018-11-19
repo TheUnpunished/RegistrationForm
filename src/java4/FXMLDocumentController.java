@@ -47,7 +47,7 @@ public class FXMLDocumentController implements Initializable {
             stage1.close();
             Stage stage = new Stage();
             stage.setTitle("Товары");
-            Parent root = FXMLLoader.load(getClass().getResource("goods.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
