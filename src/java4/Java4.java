@@ -37,6 +37,7 @@ public class Java4 extends Application {
     public static void main(String[] args) throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
         connection.connect();
         connection.createTable();
+        Purchases.getList().forEach(n -> System.out.println(n.id_order + " " + n.login + " " + n.date));
         launch(args);
         connection.closeDB();
     }

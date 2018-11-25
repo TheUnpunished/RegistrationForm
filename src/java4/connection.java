@@ -4,6 +4,8 @@ import javafx.collections.ObservableList;
 
 import java.sql.*;
 import java.lang.String;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 class connection {
@@ -165,14 +167,16 @@ class connection {
         stat.execute("SET FOREIGN_KEY_CHECKS = 1;");
     }
 
-    public static ObservableList<Purchases> getListGoods() throws SQLException {
+    public static List<Purchases> getListGoods() throws SQLException {
            /*
         получить(вернуть) список всех покупок из базы данныx в таблице purchase
          */
-           ObservableList<Purchases> list = null;
+           List<Purchases> list = new ArrayList<>();
         resSet = stat.executeQuery("select id_purchase, login, date from purchase " +
                 "                       left join users on purchase.id_user = users.id;") ;
         while (resSet.next()){
+//            System.out.println(resSet.getDate("date"));
+
             list.add(new Purchases(resSet.getInt("id_purchase"),
                     resSet.getString("login"),
                     resSet.getDate("date")));
