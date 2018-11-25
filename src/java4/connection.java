@@ -165,6 +165,21 @@ class connection {
         stat.execute("SET FOREIGN_KEY_CHECKS = 1;");
     }
 
+    public static ObservableList<Purchases> getListGoods() throws SQLException {
+           /*
+        получить(вернуть) список всех покупок из базы данныx в таблице purchase
+         */
+           ObservableList<Purchases> list = null;
+        resSet = stat.executeQuery("select id_purchase, login, date from purchase " +
+                "                       left join users on purchase.id_user = users.id;") ;
+        while (resSet.next()){
+            list.add(new Purchases(resSet.getInt("id_purchase"),
+                    resSet.getString("login"),
+                    resSet.getDate("date")));
+        }
+        return list;
+    }
+
 
 //    public static void addOrder(){
 //        /*
@@ -175,9 +190,7 @@ class connection {
 //    }
 //
 //    public static  getList() {
-//        /*
-//        получить(вернуть) список товаров из базы данныз
-//         */
+
 //        return
 //    }
 }
