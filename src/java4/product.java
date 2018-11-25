@@ -63,6 +63,10 @@ public class product {
     }
 
     static void rewriteDb(ObservableList<product> list) throws SQLException {
+        /*
+        перезапись таблицы, очищаем бд, заполняем текущими данными from observian list
+         */
+        connection.setTrancToZero();
         connection.clearDb();
         list.forEach(product -> {
             try {
@@ -71,5 +75,6 @@ public class product {
                 e.printStackTrace();
             }
         });
+        connection.setTrancToOne();
     }
 }

@@ -66,6 +66,7 @@ class connection {
                 "login VARCHAR(100) not null ," +
                 "PASS VARCHAR(100) not null, " +
                 "isAdmin Boolean not null," +
+                "purchase_id INT (100)," +
                 "PRIMARY KEY (id));");
         System.out.println("Таблица создана или уже существует.");
     }
@@ -122,8 +123,8 @@ class connection {
         /*
         Перезаписывание каждого товара
          */
-        curr.setProductName(curr.getProductName().replaceAll("[\\W]", ""));
-        String a = "INSERT INTO `goods` (`id`, `artikul`, `name`, `count`, `sum`) VALUES (NULL, '"+
+        curr.setProductName(curr.getProductName().replaceAll("'", ""));
+        String a = "INSERT INTO `goods` (`artikul`, `name`, `count`, `sum`) VALUES ('"+
                 curr.getProductId() + "', '" +
                 curr.getProductName() + "', '"+
                 curr.getProductCount() + "', '" +
@@ -155,4 +156,28 @@ class connection {
             resSet.next();
             return resSet.getBoolean("isAdmin");
     }
+
+    public static void setTrancToZero() throws SQLException {
+        stat.execute("SET FOREIGN_KEY_CHECKS = 0;");
+    }
+
+    public static void setTrancToOne() throws SQLException {
+        stat.execute("SET FOREIGN_KEY_CHECKS = 1;");
+    }
+
+
+//    public static void addOrder(){
+//        /*
+//        добавить новый заказ
+//         */
+//
+//
+//    }
+//
+//    public static  getList() {
+//        /*
+//        получить(вернуть) список товаров из базы данныз
+//         */
+//        return
+//    }
 }
