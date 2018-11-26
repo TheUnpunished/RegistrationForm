@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import java.sql.*;
 import java.lang.String;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
 
@@ -185,13 +186,23 @@ class connection {
     }
 
 
-//    public static void addOrder(){
-//        /*
-//        добавить новый заказ
-//         */
-//
-//
-//    }
+    public static void findOrder(String str) throws SQLException {
+        /*
+        найти заказ
+         */
+        try {
+            resSet = stat.executeQuery("select id_purchase, login, date from purchase " +
+                    "left join users on purchase.id_user = users.id where id_purchase =" + str + ";");
+            resSet.next();
+            System.out.println(resSet.getInt("id_purchase" ) + " "
+                    + resSet.getString("login") + " "
+                    + resSet.getDate("date"));
+        } catch (Exception e){
+            
+        }
+
+
+    }
 //
 //    public static  getList() {
 

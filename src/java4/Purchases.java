@@ -26,4 +26,8 @@ public class Purchases {
     static List<Purchases> getList() throws SQLException {
         return connection.getListGoods();
     }
+
+    static void findOrder() throws SQLException {
+        connection.findOrder("111");
+    }
 }
