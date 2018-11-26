@@ -38,7 +38,7 @@ public class Java4 extends Application {
         connection.connect();
         connection.createTable();
 //        Purchases.getList().forEach(n -> System.out.println(n.id_order + " " + n.login + " " + n.date));
-        connection.findOrder("1243");
+//        connection.findOrder("1235");
         launch(args);
         connection.closeDB();
     }

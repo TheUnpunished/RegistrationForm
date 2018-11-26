@@ -1,22 +1,24 @@
 package java4;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class MainMenuController implements Initializable {
+
+    private final ObservableList<Purchases> orders = FXCollections.observableArrayList();
 
     @FXML
     private Tab orderTab;
@@ -27,6 +29,9 @@ public class MainMenuController implements Initializable {
     @FXML
     private TabPane tabPane;
 
+    @FXML
+    private TableView<Purchases> tableOrder;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         FXMLLoader loader = new FXMLLoader();
@@ -36,6 +41,15 @@ public class MainMenuController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        try {
+            connection.getListGoods(orders);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        tableOrder.setItems(orders);
     }
 
     @FXML
