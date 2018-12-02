@@ -1,5 +1,5 @@
 
-package java4;
+package ru.java4;
 
 import java.io.File;
 import java.io.IOException;

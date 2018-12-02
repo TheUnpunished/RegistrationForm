@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="229.0" prefWidth="216.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="java4.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="229.0" prefWidth="216.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.java4.FXMLDocumentController">
    <children>
        <Button fx:id="buttonAction1" layoutX="47.0" layoutY="107.0" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="128.0" text="Войти">
          <font>

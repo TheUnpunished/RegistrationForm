@@ -1,4 +1,4 @@
-package java4;
+package ru.java4;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

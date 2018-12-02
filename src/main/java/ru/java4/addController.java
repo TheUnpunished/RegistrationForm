@@ -1,4 +1,4 @@
-package java4;
+package ru.java4;
 
 import java.io.IOException;
 import java.net.URL;
