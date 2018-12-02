@@ -116,7 +116,7 @@ public class goodsConntroller implements Initializable {
          */
         try{
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(addController.class.getResource("addingAction.fxml"));
+            loader.setLocation(addController.class.getResource("/FXML/addingAction.fxml"));
             AnchorPane page = loader.load();
 
             Stage dialogStage = new Stage();

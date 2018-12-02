@@ -5,18 +5,22 @@
  */
 package ru.java4;
 
-import java.io.IOException;
-import java.net.URL;
-import java.sql.SQLException;
-import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.net.URL;
+import java.sql.SQLException;
+import java.util.ResourceBundle;
 
 
 /**
@@ -48,7 +52,7 @@ public class FXMLDocumentController implements Initializable {
                 stage1.close();
                 Stage stage = new Stage();
                 stage.setTitle("Товары");
-                Parent root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("/FXML/MainMenu.fxml"));
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
                 stage.show();
@@ -57,7 +61,7 @@ public class FXMLDocumentController implements Initializable {
                 stage1.close();
                 Stage stage = new Stage();
                 stage.setTitle("Товары");
-                Parent root = FXMLLoader.load(getClass().getResource("goods.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("/FXML/goods.fxml"));
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
                 stage.show();
@@ -86,7 +90,7 @@ public class FXMLDocumentController implements Initializable {
         stage1.close();
         Stage stage = new Stage();
         stage.setTitle("Регистрация");
-        Parent root = FXMLLoader.load(getClass().getResource("signUp.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/FXML/signUp.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();

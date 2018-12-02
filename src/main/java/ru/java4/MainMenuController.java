@@ -35,7 +35,7 @@ public class MainMenuController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("goods.fxml"));
+        loader.setLocation(getClass().getResource("/FXML/goods.fxml"));
         try {
             catalogTab.setContent(loader.load());
         } catch (IOException e) {
@@ -74,7 +74,7 @@ public class MainMenuController implements Initializable {
     public void openNewWindow(ActionEvent event) throws IOException {
     Stage stage = new Stage();
     stage.setTitle("Товары");
-    Parent root = FXMLLoader.load(getClass().getResource("goods.fxml"));
+    Parent root = FXMLLoader.load(getClass().getResource("../../../resources/FXML/goods.fxml"));
     Scene scene = new Scene(root);
     stage.setScene(scene);
     stage.show();

@@ -10,9 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import java.sql.Connection;
-import java.sql.Driver;
-import java.sql.DriverManager;
+
 import java.sql.SQLException;
 
 /**
@@ -24,7 +22,7 @@ public class Java4 extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 //        System.out.println("Start");
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/FXML/FXMLDocument.fxml"));
         Scene scene = new Scene(root);
         stage.setTitle("Вход");
         stage.setScene(scene);
